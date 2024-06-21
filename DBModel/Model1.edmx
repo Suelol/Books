@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Book_FarhullinModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActiveDiscount">
+          <Key>
+            <PropertyRef Name="Id_Ative_Discount" />
+          </Key>
+          <Property Name="Id_Ative_Discount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id_Book" />
+          </Key>
+          <Property Name="Id_Book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_MaxDiscount" Type="int" />
+          <Property Name="Id_Maker" Type="int" />
+          <Property Name="Id_Category" Type="int" />
+          <Property Name="Id_Supplier" Type="int" />
+          <Property Name="Id_Ative_Discount" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id_Category" />
+          </Key>
+          <Property Name="Id_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Category" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Maker">
+          <Key>
+            <PropertyRef Name="Id_Maker" />
+          </Key>
+          <Property Name="Id_Maker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MaxDiscount">
+          <Key>
+            <PropertyRef Name="Id_MaxDiscount" />
+          </Key>
+          <Property Name="Id_MaxDiscount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id_Supplier" />
+          </Key>
+          <Property Name="Id_Supplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Book_ActiveDiscount">
+          <End Role="ActiveDiscount" Type="Self.ActiveDiscount" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActiveDiscount">
+              <PropertyRef Name="Id_Ative_Discount" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Ative_Discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id_Category" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Maker">
+          <End Role="Maker" Type="Self.Maker" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maker">
+              <PropertyRef Name="Id_Maker" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Maker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_MaxDiscount">
+          <End Role="MaxDiscount" Type="Self.MaxDiscount" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaxDiscount">
+              <PropertyRef Name="Id_MaxDiscount" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_MaxDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id_Supplier" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Book_FarhullinModelContainer">
+          <EntitySet Name="ActiveDiscount" EntityType="Self.ActiveDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maker" EntityType="Self.Maker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaxDiscount" EntityType="Self.MaxDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Book_ActiveDiscount" Association="Self.FK_Book_ActiveDiscount">
+            <End Role="ActiveDiscount" EntitySet="ActiveDiscount" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Category" Association="Self.FK_Book_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Maker" Association="Self.FK_Book_Maker">
+            <End Role="Maker" EntitySet="Maker" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_MaxDiscount" Association="Self.FK_Book_MaxDiscount">
+            <End Role="MaxDiscount" EntitySet="MaxDiscount" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Supplier" Association="Self.FK_Book_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Book_FarhullinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActiveDiscount">
+          <Key>
+            <PropertyRef Name="Id_Ative_Discount" />
+          </Key>
+          <Property Name="Id_Ative_Discount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_ActiveDiscount" FromRole="ActiveDiscount" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id_Book" />
+          </Key>
+          <Property Name="Id_Book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_MaxDiscount" Type="Int32" />
+          <Property Name="Id_Maker" Type="Int32" />
+          <Property Name="Id_Category" Type="Int32" />
+          <Property Name="Id_Supplier" Type="Int32" />
+          <Property Name="Id_Ative_Discount" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ActiveDiscount" Relationship="Self.FK_Book_ActiveDiscount" FromRole="Book" ToRole="ActiveDiscount" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Book_Category" FromRole="Book" ToRole="Category" />
+          <NavigationProperty Name="Maker" Relationship="Self.FK_Book_Maker" FromRole="Book" ToRole="Maker" />
+          <NavigationProperty Name="MaxDiscount" Relationship="Self.FK_Book_MaxDiscount" FromRole="Book" ToRole="MaxDiscount" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Book_Supplier" FromRole="Book" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id_Category" />
+          </Key>
+          <Property Name="Id_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Category" FromRole="Category" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Maker">
+          <Key>
+            <PropertyRef Name="Id_Maker" />
+          </Key>
+          <Property Name="Id_Maker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Maker" FromRole="Maker" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="MaxDiscount">
+          <Key>
+            <PropertyRef Name="Id_MaxDiscount" />
+          </Key>
+          <Property Name="Id_MaxDiscount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_MaxDiscount" FromRole="MaxDiscount" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id_Supplier" />
+          </Key>
+          <Property Name="Id_Supplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Supplier" FromRole="Supplier" ToRole="Book" />
+        </EntityType>
+        <Association Name="FK_Book_ActiveDiscount">
+          <End Role="ActiveDiscount" Type="Self.ActiveDiscount" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActiveDiscount">
+              <PropertyRef Name="Id_Ative_Discount" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Ative_Discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id_Category" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Maker">
+          <End Role="Maker" Type="Self.Maker" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maker">
+              <PropertyRef Name="Id_Maker" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Maker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_MaxDiscount">
+          <End Role="MaxDiscount" Type="Self.MaxDiscount" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaxDiscount">
+              <PropertyRef Name="Id_MaxDiscount" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_MaxDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id_Supplier" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Id_Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Book_FarhullinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActiveDiscount" EntityType="Self.ActiveDiscount" />
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Maker" EntityType="Self.Maker" />
+          <EntitySet Name="MaxDiscount" EntityType="Self.MaxDiscount" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK_Book_ActiveDiscount" Association="Self.FK_Book_ActiveDiscount">
+            <End Role="ActiveDiscount" EntitySet="ActiveDiscount" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Category" Association="Self.FK_Book_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Maker" Association="Self.FK_Book_Maker">
+            <End Role="Maker" EntitySet="Maker" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_MaxDiscount" Association="Self.FK_Book_MaxDiscount">
+            <End Role="MaxDiscount" EntitySet="MaxDiscount" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Supplier" Association="Self.FK_Book_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Book_FarhullinModelContainer" CdmEntityContainer="Book_FarhullinEntities">
+          <EntitySetMapping Name="ActiveDiscount">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.ActiveDiscount">
+              <MappingFragment StoreEntitySet="ActiveDiscount">
+                <ScalarProperty Name="Id_Ative_Discount" ColumnName="Id_Ative_Discount" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id_MaxDiscount" ColumnName="Id_MaxDiscount" />
+                <ScalarProperty Name="Id_Maker" ColumnName="Id_Maker" />
+                <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+                <ScalarProperty Name="Id_Supplier" ColumnName="Id_Supplier" />
+                <ScalarProperty Name="Id_Ative_Discount" ColumnName="Id_Ative_Discount" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+                <ScalarProperty Name="Name_Category" ColumnName="Name_Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maker">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.Maker">
+              <MappingFragment StoreEntitySet="Maker">
+                <ScalarProperty Name="Id_Maker" ColumnName="Id_Maker" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaxDiscount">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.MaxDiscount">
+              <MappingFragment StoreEntitySet="MaxDiscount">
+                <ScalarProperty Name="Id_MaxDiscount" ColumnName="Id_MaxDiscount" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="Book_FarhullinModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id_Supplier" ColumnName="Id_Supplier" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

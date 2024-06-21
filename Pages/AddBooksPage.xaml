@@ -1,0 +1,113 @@
+﻿<Page x:Class="Books39_40.Pages.AddBooksPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Books39_40.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddBooksPage">
+
+    <Grid Background="#1E1E1E">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="8.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Label Content="Добавление новой валюты"
+           FontSize="36"
+           FontWeight="SemiBold"
+           HorizontalContentAlignment="Center"
+           Grid.Column="1" Foreground="Yellow"/>
+
+        <Grid Grid.Row="1"
+              Grid.Column="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+
+                <Label Content="id"
+                       HorizontalAlignment="Center" Foreground="#FFF3FF00"/>
+
+                <TextBox Width="180"
+                         HorizontalAlignment="Center"
+                         x:Name="articleTxt"/>
+
+                <Label Content="Название криптовалюты"
+                       HorizontalAlignment="Center" Foreground="#FFF3FF00"/>
+                <TextBox Width="180"
+                         PreviewTextInput="type_PreviewTextInput"
+                         x:Name="type"
+                         HorizontalAlignment="Center"/>
+
+                <Label Content="Цена"
+                       HorizontalAlignment="Center" Foreground="#FFF3FF00"/>
+                <TextBox Width="180"
+                         x:Name="serial"
+                         PreviewTextInput="serial_PreviewTextInput"
+                         HorizontalAlignment="Center"/>
+
+                <Label Content="Создатель"
+                       HorizontalAlignment="Center" Foreground="#FFF3FF00"/>
+
+                <ComboBox Width="180"
+                         x:Name="Makercmb"
+                           SelectionChanged="Makercmb_SelectionChanged">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                </ComboBox>
+
+
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+
+                <Label Content="Количество"
+           HorizontalAlignment="Center" Foreground="#FFF3FF00"/>
+                <TextBox Width="180"
+                         x:Name="CountTB"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+             HorizontalAlignment="Center"/>
+
+
+
+
+            </StackPanel>
+
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="3">
+
+            <Button Content="Добавить"
+                    Margin="0 0 20 0"
+                    Height="40"
+                    Click="Button_Click_1" Foreground="Black"/>
+
+            <Button Content="Вернуться назад"
+                    Height="40"
+                    Click="Button_Click" Foreground="Black"/>
+
+        </StackPanel>
+
+    </Grid>
+</Page>
